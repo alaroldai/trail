@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+trail evolve execute HEAD $(git prior)

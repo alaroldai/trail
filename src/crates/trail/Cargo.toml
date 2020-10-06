@@ -1,0 +1,24 @@
+[package]
+name = "trail"
+version = "0.1.0"
+authors = ["Alastair Daivis <alaroldai@google.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+console = "0.12.0"
+dialoguer = "0.6.2"
+directories = "3.0.1"
+duct = "0.13.4"
+env_logger = "0.7.1"
+log = "0.4.11"
+skim = "0.6.8"
+structopt = "0.3.18"
+anyhow = "1.0.32"
+indicatif = "0.15.0"
+rayon = "1.4.1"
+
+[dependencies.serde]
+features = ["derive"]
+version = "1.0.116"
