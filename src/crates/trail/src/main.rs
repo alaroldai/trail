@@ -47,7 +47,7 @@ impl EvolveCommand {
         std::fs::File::create(output)?.write_all(git::EvolvePlan { onto, base }.build()?.as_bytes())?;
       },
       EvolveCommand::Execute { onto, base } => {
-          if (app.dry_run) {
+          if app.dry_run {
             println!("{}", git::EvolvePlan { onto, base }.build()?);
           } else {
         duct::cmd!("git", "rebase", "-i", onto.to_string())
@@ -77,11 +77,13 @@ enum Command {
     Evolve(EvolveCommand)
 }
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     env_logger::init();
     let opts = AppOptions::from_args();
 
     match opts.cmd {
-        Command::Evolve(ref cmd) => { cmd.run(&opts); }
+        Command::Evolve(ref cmd) => { cmd.run(&opts)?; }
     }
+
+    Ok(())
 }
